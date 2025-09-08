@@ -1,0 +1,33 @@
+{
+  "name": "highlight-detector",
+  "version": "1.0.0",
+  "description": "Sports or Podcast Highlight Extractor with calm, premium UI and reliable Python pipeline",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "turbo run dev",
+    "build": "turbo run build",
+    "test": "turbo run test",
+    "test:python": "python scripts/run_tests.py",
+    "test:frontend": "cd apps/web && npm test",
+    "test:integration": "python scripts/run_tests.py --integration",
+    "lint": "turbo run lint",
+    "clean": "turbo run clean",
+    "setup": "npm install && cd apps/server && pip install -r requirements.txt",
+    "demo": "python scripts/demo.py",
+    "start:backend": "cd apps/server && python main.py",
+    "start:frontend": "cd apps/web && npm run dev"
+  },
+  "devDependencies": {
+    "turbo": "^1.10.12",
+    "@types/node": "^20.8.0",
+    "typescript": "^5.2.2"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
+  }
+}
