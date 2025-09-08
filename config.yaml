@@ -1,0 +1,97 @@
+# Highlight Detector Configuration
+
+# Mode-specific defaults
+modes:
+  sports:
+    audio_threshold: 0.7
+    motion_threshold: 0.6
+    scoreboard_weight: 0.3
+    replay_weight: 0.4
+    crowd_cheer_weight: 0.5
+    commentator_excitement_weight: 0.6
+    default_clip_duration_before: 4.0
+    default_clip_duration_after: 6.0
+    min_clip_duration: 3.0
+    max_clip_duration: 15.0
+    
+  podcast:
+    audio_threshold: 0.6
+    laughter_weight: 0.7
+    applause_weight: 0.6
+    excitement_weight: 0.5
+    topic_shift_weight: 0.4
+    crosstalk_weight: 0.3
+    default_clip_duration_before: 3.0
+    default_clip_duration_after: 5.0
+    min_clip_duration: 2.0
+    max_clip_duration: 12.0
+
+# Detection thresholds
+detection:
+  audio_peak_prominence: 0.3
+  motion_peak_prominence: 0.2
+  shot_boundary_threshold: 0.4
+  voice_activity_threshold: 0.5
+  non_max_suppression_window: 2.0
+  min_confidence: 0.4
+
+# Model paths
+models:
+  audio_features: "./models/audio_features.onnx"
+  vision_features: "./models/vision_features.onnx"
+  fusion_classifier: "./models/fusion_classifier.onnx"
+  laughter_detector: "./models/laughter_detector.onnx"
+  applause_detector: "./models/applause_detector.onnx"
+
+# Output presets
+output_presets:
+  vertical:
+    width: 1080
+    height: 1920
+    aspect_ratio: "9:16"
+    crop_strategy: "motion_centroid"
+    
+  square:
+    width: 1080
+    height: 1080
+    aspect_ratio: "1:1"
+    crop_strategy: "center"
+    
+  wide:
+    width: 1920
+    height: 1080
+    aspect_ratio: "16:9"
+    crop_strategy: "center"
+
+# Audio processing
+audio:
+  sample_rate: 16000
+  hop_length: 512
+  n_fft: 2048
+  n_mels: 128
+  fade_duration: 0.15
+  loudness_target: -23.0
+
+# Video processing
+video:
+  proxy_resolution: "480p"
+  keyframe_interval: 2.0
+  motion_threshold: 0.1
+  shot_boundary_threshold: 0.4
+
+# Sports-specific settings
+sports:
+  scoreboard_region:
+    top: 0.0
+    left: 0.0
+    width: 1.0
+    height: 0.15
+  replay_cue_templates: ["./templates/replay_cue.png"]
+  logo_templates: ["./templates/logo.png"]
+
+# Podcast-specific settings
+podcast:
+  topic_shift_window: 30.0
+  entity_extraction: true
+  ad_detection: true
+  crosstalk_threshold: 0.3
